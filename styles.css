@@ -1,0 +1,435 @@
+:root {
+  --page-bg: #f7f7f5;
+  --surface: #ffffff;
+  --line: #d7d7d2;
+  --line-strong: #b8b8b0;
+  --text: #222222;
+  --muted: #595959;
+  --muted-soft: #767676;
+  --accent: #2f5e8b;
+  --accent-soft: #edf3f8;
+  --shadow: 0 10px 30px rgba(15, 20, 30, 0.06);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background: var(--page-bg);
+  color: var(--text);
+  font-family: "Source Sans 3", sans-serif;
+  line-height: 1.7;
+}
+
+a {
+  color: var(--accent);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+.page-shell {
+  width: min(1180px, calc(100% - 32px));
+  margin: 0 auto;
+  padding: 0 0 48px;
+}
+
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  padding: 18px 0 16px;
+  border-bottom: 1px solid var(--line);
+  background: rgba(247, 247, 245, 0.96);
+  backdrop-filter: blur(10px);
+}
+
+.brand {
+  color: var(--text);
+  font-family: "Lora", serif;
+  font-size: 1.65rem;
+  font-weight: 600;
+}
+
+.site-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 18px;
+}
+
+.site-nav a {
+  color: var(--muted);
+  font-size: 1rem;
+}
+
+.page-layout {
+  display: grid;
+  grid-template-columns: minmax(250px, 290px) minmax(0, 1fr);
+  gap: 56px;
+  padding-top: 32px;
+}
+
+.profile-sidebar {
+  position: sticky;
+  top: 92px;
+  align-self: start;
+}
+
+.profile-card,
+.profile-note,
+.profile-stats,
+.profile-contact,
+.about-summary,
+.detail-card,
+.project-entry,
+.timeline-entry,
+.contact-list {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  box-shadow: var(--shadow);
+}
+
+.profile-card,
+.profile-note,
+.profile-stats,
+.profile-contact {
+  margin-bottom: 16px;
+}
+
+.profile-card {
+  padding: 18px;
+}
+
+.profile-media {
+  margin-bottom: 18px;
+}
+
+.profile-media img {
+  display: block;
+  width: 100%;
+  border: 1px solid var(--line);
+}
+
+.profile-caption {
+  margin: 10px 0 0;
+  color: var(--muted-soft);
+  font-size: 0.92rem;
+  text-align: center;
+}
+
+.profile-name,
+.intro-section h2,
+.section-heading h2,
+.detail-card h3,
+.project-entry h3,
+.timeline-entry h3,
+.profile-note h2 {
+  margin: 0;
+  font-family: "Lora", serif;
+}
+
+.profile-name {
+  font-size: 2rem;
+  line-height: 1.18;
+}
+
+.profile-role {
+  margin: 10px 0 0;
+  color: var(--muted-soft);
+  font-size: 0.94rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.profile-bio {
+  margin: 14px 0 0;
+  color: var(--muted);
+  font-size: 1rem;
+}
+
+.profile-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 18px;
+}
+
+.button {
+  display: block;
+  padding: 11px 14px;
+  border: 1px solid var(--line-strong);
+  font-weight: 600;
+  text-align: center;
+}
+
+.button.primary {
+  color: #ffffff;
+  background: var(--accent);
+  border-color: var(--accent);
+}
+
+.button.secondary {
+  color: var(--accent);
+  background: var(--accent-soft);
+}
+
+.profile-note,
+.profile-stats,
+.profile-contact {
+  padding: 16px 18px;
+}
+
+.note-label,
+.section-kicker,
+.section-label,
+.project-tag,
+.timeline-period,
+.stat-item span {
+  color: var(--muted-soft);
+  font-size: 0.88rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.profile-note h2 {
+  margin-top: 6px;
+  font-size: 1.12rem;
+  line-height: 1.45;
+}
+
+.profile-note p:last-child {
+  margin-bottom: 0;
+  color: var(--muted);
+}
+
+.profile-stats {
+  display: grid;
+  gap: 12px;
+}
+
+.stat-item {
+  display: grid;
+  gap: 2px;
+}
+
+.stat-item strong {
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.profile-contact {
+  display: grid;
+  gap: 10px;
+}
+
+.contact-item {
+  color: var(--muted);
+  font-size: 1rem;
+}
+
+.content-column {
+  min-width: 0;
+}
+
+.intro-section {
+  padding-bottom: 20px;
+  border-bottom: 2px solid var(--line-strong);
+}
+
+.intro-section h2 {
+  max-width: none;
+  margin-top: 8px;
+  font-size: clamp(1.35rem, 2.35vw, 2.35rem);
+  line-height: 1.14;
+  white-space: nowrap;
+}
+
+.section {
+  padding-top: 34px;
+}
+
+.section-heading {
+  margin-bottom: 16px;
+}
+
+.section-heading h2 {
+  margin-top: 6px;
+  font-size: 2rem;
+  line-height: 1.2;
+}
+
+.about-summary,
+.contact-list {
+  padding: 20px 22px;
+}
+
+.about-summary p,
+.contact-list {
+  margin: 0;
+}
+
+.rich-text > :first-child {
+  margin-top: 0;
+}
+
+.rich-text > :last-child {
+  margin-bottom: 0;
+}
+
+.rich-text p,
+.rich-text ul,
+.rich-text ol,
+.rich-text blockquote {
+  margin: 0 0 12px;
+}
+
+.rich-text img,
+.rich-text video,
+.rich-text iframe {
+  display: block;
+  max-width: 100%;
+  margin-top: 12px;
+  border: 1px solid var(--line);
+}
+
+.rich-text video,
+.rich-text iframe {
+  width: 100%;
+}
+
+.about-points,
+.project-list,
+.timeline {
+  display: grid;
+  gap: 16px;
+  margin-top: 16px;
+}
+
+.detail-card,
+.project-entry,
+.timeline-entry {
+  padding: 20px 22px;
+}
+
+.detail-card h3,
+.project-entry h3,
+.timeline-entry h3 {
+  font-size: 1.22rem;
+  line-height: 1.35;
+}
+
+.detail-card p,
+.project-entry p,
+.timeline-entry p {
+  margin: 10px 0 0;
+  color: var(--muted);
+}
+
+.project-tag {
+  margin: 0 0 8px;
+}
+
+.project-media {
+  margin-top: 16px;
+}
+
+.project-media img {
+  display: block;
+  width: 100%;
+  border: 1px solid var(--line);
+}
+
+.inline-link {
+  display: inline-block;
+  margin-top: 12px;
+  font-weight: 600;
+}
+
+.timeline {
+  position: relative;
+}
+
+.timeline-entry {
+  display: grid;
+  grid-template-columns: 110px 1fr;
+  gap: 18px;
+}
+
+.timeline-period {
+  font-weight: 700;
+}
+
+.contact-list {
+  display: grid;
+  gap: 12px;
+}
+
+.contact-copy {
+  color: var(--muted);
+}
+
+.site-footer {
+  padding-top: 28px;
+  color: var(--muted-soft);
+  font-size: 0.95rem;
+}
+
+.reveal {
+  opacity: 0;
+  transform: translateY(12px);
+  transition: opacity 420ms ease, transform 420ms ease;
+}
+
+.reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (max-width: 960px) {
+  .page-layout {
+    grid-template-columns: 1fr;
+    gap: 28px;
+  }
+
+  .profile-sidebar {
+    position: static;
+  }
+
+  .intro-section h2 {
+    white-space: normal;
+    font-size: clamp(1.7rem, 5.4vw, 2.4rem);
+  }
+}
+
+@media (max-width: 640px) {
+  .page-shell {
+    width: min(100% - 20px, 1180px);
+  }
+
+  .site-header {
+    position: static;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .site-nav {
+    gap: 14px;
+  }
+
+  .timeline-entry {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+}
