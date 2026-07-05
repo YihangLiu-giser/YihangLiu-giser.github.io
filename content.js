@@ -11,7 +11,7 @@ window.SITE_CONTENT = {
   meta: {
     title: "Yihang Liu | Academic Homepage",
     description:
-      "Academic homepage of Yihang Liu, featuring research interests, academic experience, and contact information in 3D vision, GIS, and AI.",
+      "Academic homepage of Yihang Liu, featuring research interests, academic experience, and contact information in 3D vision, GIS, Remoting Scening and AI."
   },
   brand: "Yihang Liu",
   navigation: [
@@ -21,7 +21,7 @@ window.SITE_CONTENT = {
     { label: "Contact", href: "#contact" },
   ],
   hero: {
-    eyebrow: "GIS / 3D Vision / AI",
+    eyebrow: "GIS / Remote Scening / 3D Vision / AI",
     title: "I work at the intersection of spatial intelligence, 3D vision, and applied AI.",
     text:
       "I am an undergraduate student in Geospatial Information Engineering at Shenzhen University, with interests in panoramic depth estimation, 3D scene understanding, spatial computing, and practical AI applications.",
@@ -42,8 +42,7 @@ window.SITE_CONTENT = {
     },
     stats: [
       { label: "Focus", value: "3D Vision / GIS" },
-      { label: "Education", value: "Shenzhen University" },
-      { label: "Standing", value: "Rank 16 / 68" },
+      { label: "Education: Master", value: "Shenzhen University" },
     ],
   },
   about: {
@@ -177,8 +176,8 @@ window.SITE_CONTENT = {
     ],
   },
   sidebarContacts: [
-    { label: "giserhang@gmail.com", href: "mailto:giserhang@gmail.com" },
-    { label: "@YihangLiu-giser", href: "https://github.com/YihangLiu-giser" },
+    { label: "Gmail:giserhang@gmail.com", href: "mailto:giserhang@gmail.com" },
+    { label: "Github:", href: "https://github.com/YihangLiu-giser" },
     {
       label: "ResearchGate",
       href: "https://www.researchgate.net/profile/Yihang-Liu-12?ev=hdr_xprf",
