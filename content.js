@@ -44,7 +44,7 @@ window.PORTFOLIO_CONTENT = {
       ["Contact", "#contact"],
     ],
     hero: {
-      eyebrow: "GEOSPATIAL INFORMATION ENGINEERING · SHENZHEN UNIVERSITY",
+      eyebrow: "SHENZHEN UNIVERSITY",
       title: "Spatial intelligence and 3D vision.",
       intro: "I am a geospatial information engineering student working across panoramic depth estimation, point-cloud generation, photogrammetric mesh evaluation, and urban spatial analytics.",
       primaryAction: "Explore my research",
@@ -174,7 +174,7 @@ window.PORTFOLIO_CONTENT = {
     },
     nav: [["首页", "#home"], ["研究", "#research"], ["经历", "#experience"], ["联系", "#contact"]],
     hero: {
-      eyebrow: "地理空间信息工程 · 深圳大学",
+      eyebrow: "深圳大学",
       title: "空间智能与三维视觉。",
       intro: "我专注于全景深度估计、点云生成、实景三维模型质量评价与城市空间分析，探索计算机视觉、球面几何与 GIS 的交叉应用。",
       primaryAction: "查看研究项目",
