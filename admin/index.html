@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex" />
+    <title>主页内容管理 · Yihang Liu</title>
+    <style>
+      :root { --ink:#17221f; --muted:#59645f; --paper:#f4f0e7; --forest:#12352f; --lime:#c9f064; --line:rgba(23,34,31,.17); }
+      * { box-sizing:border-box; }
+      body { margin:0; color:var(--ink); background:var(--paper); font-family:Inter,ui-sans-serif,-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif; line-height:1.65; }
+      main { width:min(880px,calc(100% - 32px)); margin:0 auto; padding:72px 0 90px; }
+      .top { display:flex; align-items:center; justify-content:space-between; gap:20px; padding-bottom:22px; border-bottom:1px solid var(--line); }
+      .mark { display:grid; width:42px; aspect-ratio:1; place-items:center; color:var(--lime); background:var(--forest); border-radius:50%; font-weight:800; }
+      a { color:inherit; }
+      h1 { max-width:720px; margin:56px 0 18px; font-family:Georgia,"Noto Serif SC",serif; font-size:clamp(2.5rem,7vw,5.5rem); font-weight:500; letter-spacing:-.05em; line-height:1; }
+      .lead { max-width:700px; margin:0 0 46px; color:var(--muted); font-size:1.05rem; }
+      .grid { display:grid; grid-template-columns:repeat(2,1fr); gap:14px; }
+      .card { display:flex; min-height:180px; flex-direction:column; justify-content:space-between; padding:26px; text-decoration:none; background:#fffdf8; border:1px solid var(--line); transition:transform .18s ease,border-color .18s ease; }
+      .card:hover { transform:translateY(-3px); border-color:var(--forest); }
+      .card span { color:var(--muted); font-size:.84rem; }
+      .card strong { font-family:Georgia,"Noto Serif SC",serif; font-size:1.35rem; font-weight:500; }
+      .card b { color:var(--forest); font-size:.85rem; }
+      .steps { margin-top:56px; padding:30px; color:white; background:var(--forest); }
+      .steps h2 { margin:0 0 20px; font-family:Georgia,"Noto Serif SC",serif; font-weight:500; }
+      .steps ol { display:grid; gap:10px; margin:0; padding-left:22px; color:rgba(255,255,255,.78); }
+      .notice { margin-top:20px; padding:15px 18px; border-left:4px solid var(--lime); background:rgba(201,240,100,.2); }
+      @media(max-width:640px){ main{padding-top:28px}.grid{grid-template-columns:1fr}h1{margin-top:42px}.top{align-items:flex-start}.top>a:last-child{font-size:.8rem} }
+    </style>
+  </head>
+  <body>
+    <main>
+      <div class="top"><span class="mark">YL</span><a href="../">← 返回个人主页</a></div>
+      <h1>内容管理入口</h1>
+      <p class="lead">本站托管在 GitHub Pages，不需要额外服务器。登录 GitHub 后，通过下面的入口修改文字或上传图片；提交后网站会自动重新发布。</p>
+
+      <div class="grid">
+        <a class="card" href="https://github.com/YihangLiu-giser/YihangLiu-giser.github.io/edit/main/content.js" target="_blank" rel="noreferrer">
+          <span>文字、项目、经历、链接</span><strong>编辑网站内容</strong><b>打开 GitHub 编辑器 ↗</b>
+        </a>
+        <a class="card" href="https://github.com/YihangLiu-giser/YihangLiu-giser.github.io/upload/main/assets" target="_blank" rel="noreferrer">
+          <span>头像、项目截图、GIF 等</span><strong>上传媒体文件</strong><b>打开 assets 文件夹 ↗</b>
+        </a>
+        <a class="card" href="https://github.dev/YihangLiu-giser/YihangLiu-giser.github.io" target="_blank" rel="noreferrer">
+          <span>适合同时修改多个文件</span><strong>高级在线编辑</strong><b>打开 github.dev ↗</b>
+        </a>
+        <a class="card" href="https://github.com/YihangLiu-giser/YihangLiu-giser.github.io/actions" target="_blank" rel="noreferrer">
+          <span>查看发布是否成功</span><strong>部署状态</strong><b>查看 Actions ↗</b>
+        </a>
+      </div>
+
+      <section class="steps">
+        <h2>最常用的更新流程</h2>
+        <ol>
+          <li>点击“编辑网站内容”，登录 GitHub。</li>
+          <li>在 content.js 中修改对应的中文或英文内容。</li>
+          <li>点击右上角 Preview changes 检查改动。</li>
+          <li>点击 Commit changes 保存；通常几分钟后网站自动更新。</li>
+        </ol>
+      </section>
+      <p class="notice">安全说明：此页面不保存密码或访问令牌，也没有独立数据库。权限完全由你的 GitHub 账号管理。</p>
+    </main>
+  </body>
+</html>

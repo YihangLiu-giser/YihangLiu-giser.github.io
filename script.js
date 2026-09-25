@@ -1,259 +1,186 @@
-const siteContent = window.SITE_CONTENT;
+(() => {
+  const source = window.PORTFOLIO_CONTENT;
+  const profile = source.profile;
+  const $ = (id) => document.getElementById(id);
+  const savedLanguage = localStorage.getItem("portfolio-language");
+  let language = savedLanguage === "zh" || savedLanguage === "en" ? savedLanguage : source.settings.defaultLanguage;
 
-function setText(id, value) {
-  const node = document.getElementById(id);
-  if (node) {
-    node.textContent = value || "";
-  }
-}
-
-function setHtml(id, value) {
-  const node = document.getElementById(id);
-  if (node) {
-    node.innerHTML = value || "";
-  }
-}
-
-function createLink({ href, label, className }) {
-  const anchor = document.createElement("a");
-  anchor.href = href;
-  anchor.textContent = label;
-  if (className) {
-    anchor.className = className;
-  }
-  return anchor;
-}
-
-function createSectionCard(title, html) {
-  const article = document.createElement("article");
-  const heading = document.createElement("h3");
-  const body = document.createElement("div");
-
-  article.className = "detail-card";
-  body.className = "rich-text";
-  heading.textContent = title;
-  body.innerHTML = html || "";
-  article.append(heading, body);
-
-  return article;
-}
-
-function renderNav(items) {
-  const nav = document.getElementById("site-nav");
-  items.forEach((item) => {
-    nav.append(createLink({ href: item.href, label: item.label }));
-  });
-}
-
-function renderHero(hero, brand) {
-  setText("sidebar-name", brand);
-  setText("hero-eyebrow", hero.eyebrow);
-  setText("hero-title", hero.title);
-  setText("hero-text", hero.text);
-  setText("hero-card-label", hero.panel.label);
-  setText("hero-card-title", hero.panel.title);
-  setText("hero-card-text", hero.panel.text);
-
-  const actions = document.getElementById("hero-actions");
-  hero.actions.forEach((action) => {
-    actions.append(
-      createLink({
-        href: action.href,
-        label: action.label,
-        className: `button ${action.variant}`,
-      })
-    );
-  });
-
-  const stats = document.getElementById("hero-stats");
-  hero.stats.forEach((item) => {
-    const article = document.createElement("article");
-    const label = document.createElement("span");
-    const value = document.createElement("strong");
-
-    article.className = "stat-item";
-    label.textContent = item.label;
-    value.textContent = item.value;
-    article.append(label, value);
-    stats.append(article);
-  });
-
-  const media = document.getElementById("hero-media");
-  if (!hero.image || !hero.image.src) {
-    media.hidden = true;
-    return;
+  function element(tag, className, text) {
+    const node = document.createElement(tag);
+    if (className) node.className = className;
+    if (text !== undefined) node.textContent = text;
+    return node;
   }
 
-  media.hidden = false;
-  const img = document.createElement("img");
-  img.src = hero.image.src;
-  img.alt = hero.image.alt || hero.title;
-  media.append(img);
-
-  if (hero.image.caption) {
-    const caption = document.createElement("p");
-    caption.className = "profile-caption";
-    caption.textContent = hero.image.caption;
-    media.append(caption);
+  function clear(id) {
+    const node = $(id);
+    node.replaceChildren();
+    return node;
   }
-}
 
-function renderAbout(about) {
-  setText("about-eyebrow", about.eyebrow);
-  setText("about-title", about.title);
-  setHtml("about-summary", about.summaryHtml || about.summary || "");
+  function setText(id, text) {
+    $(id).textContent = text;
+  }
 
-  const container = document.getElementById("about-points");
-  about.points.forEach((item) => {
-    container.append(createSectionCard(item.title, item.html || `<p>${item.text || ""}</p>`));
-  });
-}
+  function renderNav(content) {
+    const nav = clear("nav");
+    content.nav.forEach(([label, href]) => {
+      const link = element("a", "nav-link", label);
+      link.href = href;
+      nav.append(link);
+    });
+  }
 
-function renderProjects(projects) {
-  setText("projects-eyebrow", projects.eyebrow);
-  setText("projects-title", projects.title);
+  function renderHero(content) {
+    setText("hero-eyebrow", content.hero.eyebrow);
+    setText("hero-title", content.hero.title);
+    setText("hero-intro", content.hero.intro);
+    setText("hero-primary", content.hero.primaryAction);
+    setText("hero-secondary", content.hero.secondaryAction);
+    setText("hero-status", content.hero.status);
+    $("hero-secondary").href = `mailto:${profile.email}`;
+    $("profile-photo").src = profile.avatar;
+    setText("portrait-name", language === "zh" ? `${profile.chineseName} · ${profile.name}` : `${profile.name} · ${profile.chineseName}`);
+    setText("portrait-location", profile.location);
+  }
 
-  const grid = document.getElementById("project-grid");
-  projects.items.forEach((item) => {
-    const article = document.createElement("article");
-    const tag = document.createElement("p");
-    const heading = document.createElement("h3");
-    const body = document.createElement("div");
+  function renderFacts(content) {
+    const container = clear("facts");
+    content.facts.forEach((fact) => {
+      const item = element("div", "fact");
+      item.append(element("strong", "fact-value", fact.value), element("span", "fact-label", fact.label));
+      container.append(item);
+    });
+  }
 
-    article.className = "project-entry";
-    body.className = "rich-text";
-    tag.className = "project-tag";
-    tag.textContent = item.tag;
-    heading.textContent = item.title;
-    body.innerHTML = item.html || `<p>${item.text || ""}</p>`;
-    article.append(tag, heading, body);
+  function renderAbout(content) {
+    setText("about-label", content.about.label);
+    setText("about-title", content.about.title);
+    const copy = clear("about-copy");
+    content.about.paragraphs.forEach((paragraph) => copy.append(element("p", "", paragraph)));
+    const interests = clear("interest-list");
+    content.about.interests.forEach((interest, index) => {
+      const item = element("div", "interest-item");
+      item.append(element("span", "interest-index", String(index + 1).padStart(2, "0")), element("span", "", interest));
+      interests.append(item);
+    });
+  }
 
-    if (item.image && item.image.src) {
-      const media = document.createElement("div");
-      const img = document.createElement("img");
-      media.className = "project-media";
-      img.src = item.image.src;
-      img.alt = item.image.alt || item.title;
-      media.append(img);
-      article.append(media);
+  function renderResearch(content) {
+    setText("research-label", content.research.label);
+    setText("research-title", content.research.title);
+    const list = clear("research-list");
+    content.research.projects.forEach((project) => {
+      const article = element("article", "research-card");
+      article.setAttribute("data-reveal", "");
+      const index = element("span", "research-number", project.number);
+      const body = element("div", "research-body");
+      const header = element("div", "research-header");
+      header.append(element("h3", "", project.title), element("span", "research-period", project.period));
+      const bullets = element("ul", "research-points");
+      project.bullets.forEach((point) => bullets.append(element("li", "", point)));
+      body.append(header, element("p", "research-summary", project.summary), bullets, element("p", "research-outcome", project.outcome));
+      article.append(index, body);
+      list.append(article);
+    });
+  }
+
+  function renderExperience(content) {
+    setText("experience-label", content.experience.label);
+    setText("experience-title", content.experience.title);
+    const list = clear("experience-list");
+    content.experience.items.forEach((item) => {
+      const row = element("article", "timeline-item");
+      row.setAttribute("data-reveal", "");
+      const date = element("time", "timeline-period", item.period);
+      const body = element("div", "timeline-body");
+      body.append(element("h3", "", item.role), element("p", "timeline-org", item.organization), element("p", "timeline-description", item.description));
+      row.append(date, body);
+      list.append(row);
+    });
+  }
+
+  function renderHighlights(content) {
+    setText("highlights-label", content.highlights.label);
+    setText("highlights-title", content.highlights.title);
+    setText("awards-title", content.highlights.awardsTitle);
+    setText("code-title", content.highlights.codeTitle);
+
+    const awards = clear("award-list");
+    content.highlights.awards.forEach((award) => awards.append(element("li", "", award)));
+
+    const repositories = clear("repo-list");
+    content.highlights.repositories.forEach((repository) => {
+      const link = element("a", "repo-card");
+      link.href = repository.href;
+      link.target = "_blank";
+      link.rel = "noreferrer";
+      link.append(element("strong", "", repository.name), element("span", "", repository.language), element("span", "repo-arrow", "↗"));
+      repositories.append(link);
+    });
+  }
+
+  function renderContact(content) {
+    setText("contact-label", content.contact.label);
+    setText("contact-title", content.contact.title);
+    setText("contact-text", content.contact.text);
+    setText("contact-email", content.contact.button);
+    $("contact-email").href = `mailto:${profile.email}`;
+
+    const links = clear("social-links");
+    [["GitHub", profile.github], ["ResearchGate", profile.researchGate], ["LinkedIn", profile.linkedIn]].forEach(([label, href]) => {
+      const link = element("a", "", `${label} ↗`);
+      link.href = href;
+      link.target = "_blank";
+      link.rel = "noreferrer";
+      links.append(link);
+    });
+  }
+
+  function observeReveal() {
+    const nodes = document.querySelectorAll("[data-reveal]:not(.is-visible)");
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      nodes.forEach((node) => node.classList.add("is-visible"));
+      return;
     }
-
-    if (item.href && item.linkLabel) {
-      article.append(
-        createLink({
-          href: item.href,
-          label: item.linkLabel,
-          className: "inline-link",
-        })
-      );
-    }
-
-    grid.append(article);
-  });
-}
-
-function renderJourney(journey) {
-  setText("journey-eyebrow", journey.eyebrow);
-  setText("journey-title", journey.title);
-
-  const timeline = document.getElementById("timeline");
-  journey.items.forEach((item) => {
-    const article = document.createElement("article");
-    const period = document.createElement("span");
-    const content = document.createElement("div");
-    const heading = document.createElement("h3");
-    const body = document.createElement("div");
-
-    article.className = "timeline-entry";
-    period.className = "timeline-period";
-    body.className = "rich-text";
-    period.textContent = item.period;
-    heading.textContent = item.title;
-    body.innerHTML = item.html || `<p>${item.text || ""}</p>`;
-    content.append(heading, body);
-    article.append(period, content);
-    timeline.append(article);
-  });
-}
-
-function renderSidebarContacts(items) {
-  const sideContainer = document.getElementById("sidebar-contact");
-  items.forEach((item) => {
-    const row = document.createElement(item.href ? "a" : "span");
-    row.className = "contact-item";
-    row.textContent = item.label;
-
-    if (item.href) {
-      row.href = item.href;
-    }
-
-    sideContainer.append(row);
-  });
-}
-
-function renderContact(contact) {
-  setText("contact-eyebrow", contact.eyebrow);
-  setText("contact-title", contact.title);
-  const node = document.getElementById("contact-card");
-  if (!node) {
-    return;
-  }
-
-  if (!contact.bodyHtml) {
-    node.hidden = true;
-    node.innerHTML = "";
-    return;
-  }
-
-  node.hidden = false;
-  setHtml("contact-card", `<div class="contact-copy rich-text">${contact.bodyHtml}</div>`);
-}
-
-function renderFooter(footer) {
-  const currentYear = new Date().getFullYear();
-  setText("footer-text", `Copyright ${currentYear} ${footer.name}.`);
-}
-
-function renderSite(content) {
-  document.title = content.meta.title;
-  const description = document.querySelector('meta[name="description"]');
-  if (description) {
-    description.setAttribute("content", content.meta.description);
-  }
-
-  const brandLink = document.getElementById("brand-link");
-  brandLink.textContent = content.brand;
-
-  renderNav(content.navigation);
-  renderHero(content.hero, content.brand);
-  renderAbout(content.about);
-  renderProjects(content.projects);
-  renderJourney(content.journey);
-  renderSidebarContacts(content.sidebarContacts || []);
-  renderContact(content.contact);
-  renderFooter(content.footer);
-}
-
-function initReveal() {
-  const revealNodes = document.querySelectorAll(".reveal");
-  const revealObserver = new IntersectionObserver(
-    (entries) => {
+    const observer = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
-        if (!entry.isIntersecting) {
-          return;
-        }
+        if (!entry.isIntersecting) return;
         entry.target.classList.add("is-visible");
-        revealObserver.unobserve(entry.target);
+        observer.unobserve(entry.target);
       });
-    },
-    { threshold: 0.12 }
-  );
+    }, { threshold: 0.12 });
+    nodes.forEach((node) => observer.observe(node));
+  }
 
-  revealNodes.forEach((node, index) => {
-    node.style.transitionDelay = `${Math.min(index * 50, 180)}ms`;
-    revealObserver.observe(node);
+  function render() {
+    const content = source[language];
+    document.documentElement.lang = language === "zh" ? "zh-CN" : "en";
+    document.title = content.meta.title;
+    document.querySelector('meta[name="description"]').content = content.meta.description;
+    document.querySelector('meta[property="og:title"]').content = content.meta.title;
+    document.querySelector('meta[property="og:description"]').content = content.meta.description;
+
+    renderNav(content);
+    renderHero(content);
+    renderFacts(content);
+    renderAbout(content);
+    renderResearch(content);
+    renderExperience(content);
+    renderHighlights(content);
+    renderContact(content);
+    setText("language-button", content.languageButton);
+    setText("footer-name", profile.name);
+    setText("footer-copy", content.footer);
+    setText("year", new Date().getFullYear());
+    observeReveal();
+  }
+
+  $("language-button").addEventListener("click", () => {
+    language = language === "en" ? "zh" : "en";
+    localStorage.setItem("portfolio-language", language);
+    render();
   });
-}
 
-renderSite(siteContent);
-initReveal();
+  render();
+})();

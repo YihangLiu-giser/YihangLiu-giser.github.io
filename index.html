@@ -1,98 +1,120 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Yihang Liu | Academic Homepage</title>
-    <meta
-      name="description"
-      content="Academic homepage of Yihang Liu, featuring research interests, academic experience, and contact information in 3D vision, GIS, and AI."
-    />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Lora:wght@500;600;700&family=Source+Sans+3:wght@400;500;600;700&display=swap"
-      rel="stylesheet"
-    />
-    <link rel="icon" type="image/svg+xml" href="./favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#12352f" />
+    <meta name="description" content="Academic portfolio of Yihang Liu." />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Yihang Liu | Spatial Intelligence & 3D Vision" />
+    <meta property="og:description" content="Geospatial information engineering, panoramic depth estimation, 3D reconstruction, and urban spatial analysis." />
+    <meta property="og:image" content="./assets/profile.jpg" />
+    <title>Yihang Liu | Spatial Intelligence & 3D Vision</title>
+    <link rel="icon" href="./favicon.svg" type="image/svg+xml" />
     <link rel="stylesheet" href="./styles.css" />
+    <script src="./content.js" defer></script>
+    <script src="./script.js" defer></script>
   </head>
   <body>
-    <div class="page-shell">
-      <header class="site-header">
-        <a class="brand" id="brand-link" href="#top">Yihang Liu</a>
-        <nav class="site-nav" id="site-nav" aria-label="Primary"></nav>
-      </header>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <header class="site-header">
+      <a class="wordmark" href="#top" aria-label="Yihang Liu home">
+        <span class="wordmark-mark">YL</span>
+        <span class="wordmark-name">Yihang Liu</span>
+      </a>
+      <nav class="nav" id="nav" aria-label="Primary navigation"></nav>
+      <button class="language-button" id="language-button" type="button" aria-label="Switch language">中文</button>
+    </header>
 
-      <main class="page-layout" id="top">
-        <aside class="profile-sidebar reveal">
-          <div class="profile-card">
-            <div class="profile-media" id="hero-media" hidden></div>
-            <h1 class="profile-name" id="sidebar-name"></h1>
-            <p class="profile-role" id="hero-eyebrow"></p>
-            <p class="profile-bio" id="hero-text"></p>
-            <div class="profile-actions" id="hero-actions"></div>
+    <main id="main">
+      <section class="hero section-pad" id="top">
+        <div class="hero-copy" data-reveal>
+          <p class="eyebrow" id="hero-eyebrow"></p>
+          <h1 id="hero-title"></h1>
+          <p class="hero-intro" id="hero-intro"></p>
+          <div class="hero-actions">
+            <a class="button button-primary" href="#research" id="hero-primary"></a>
+            <a class="button button-quiet" id="hero-secondary"></a>
           </div>
+          <p class="availability"><span aria-hidden="true"></span><b id="hero-status"></b></p>
+        </div>
 
-          <div class="profile-note">
-            <p class="note-label" id="hero-card-label"></p>
-            <h2 id="hero-card-title"></h2>
-            <p id="hero-card-text"></p>
+        <div class="portrait-wrap" data-reveal>
+          <div class="coordinate coordinate-a">22.5431° N</div>
+          <div class="coordinate coordinate-b">114.0579° E</div>
+          <div class="portrait-frame">
+            <img id="profile-photo" alt="Portrait of Yihang Liu" width="466" height="620" />
           </div>
+          <div class="portrait-caption">
+            <strong id="portrait-name"></strong>
+            <span id="portrait-location"></span>
+          </div>
+        </div>
+      </section>
 
-          <div class="profile-stats" id="hero-stats"></div>
-          <div class="profile-contact" id="sidebar-contact"></div>
-        </aside>
+      <section class="fact-strip" id="facts" aria-label="Profile highlights"></section>
 
-        <article class="content-column">
-          <section class="intro-section reveal">
-            <p class="section-kicker">Research Profile</p>
-            <h2 id="hero-title"></h2>
-          </section>
+      <section class="content-section section-pad" id="about">
+        <div class="section-heading" data-reveal>
+          <p class="section-label" id="about-label"></p>
+          <h2 id="about-title"></h2>
+        </div>
+        <div class="about-grid">
+          <div class="about-copy" id="about-copy" data-reveal></div>
+          <div class="interest-list" id="interest-list" data-reveal></div>
+        </div>
+      </section>
 
-          <section class="section reveal" id="about">
-            <div class="section-heading">
-              <p class="section-label" id="about-eyebrow"></p>
-              <h2 id="about-title"></h2>
-            </div>
-            <div class="about-summary">
-              <p id="about-summary"></p>
-            </div>
-            <div class="about-points" id="about-points"></div>
-          </section>
+      <section class="content-section research-section section-pad" id="research">
+        <div class="section-heading" data-reveal>
+          <p class="section-label" id="research-label"></p>
+          <h2 id="research-title"></h2>
+        </div>
+        <div class="research-list" id="research-list"></div>
+      </section>
 
-          <section class="section reveal" id="projects">
-            <div class="section-heading">
-              <p class="section-label" id="projects-eyebrow"></p>
-              <h2 id="projects-title"></h2>
-            </div>
-            <div class="project-list" id="project-grid"></div>
-          </section>
+      <section class="content-section section-pad" id="experience">
+        <div class="section-heading" data-reveal>
+          <p class="section-label" id="experience-label"></p>
+          <h2 id="experience-title"></h2>
+        </div>
+        <div class="timeline" id="experience-list"></div>
+      </section>
 
-          <section class="section reveal" id="journey">
-            <div class="section-heading">
-              <p class="section-label" id="journey-eyebrow"></p>
-              <h2 id="journey-title"></h2>
-            </div>
-            <div class="timeline" id="timeline"></div>
-          </section>
+      <section class="content-section highlights-section section-pad" id="highlights">
+        <div class="section-heading" data-reveal>
+          <p class="section-label" id="highlights-label"></p>
+          <h2 id="highlights-title"></h2>
+        </div>
+        <div class="highlights-grid">
+          <article class="highlight-panel" data-reveal>
+            <h3 id="awards-title"></h3>
+            <ol class="award-list" id="award-list"></ol>
+          </article>
+          <article class="highlight-panel code-panel" data-reveal>
+            <h3 id="code-title"></h3>
+            <div class="repo-list" id="repo-list"></div>
+          </article>
+        </div>
+      </section>
 
-          <section class="section reveal" id="contact">
-            <div class="section-heading">
-              <p class="section-label" id="contact-eyebrow"></p>
-              <h2 id="contact-title"></h2>
-            </div>
-            <div class="contact-list" id="contact-card"></div>
-          </section>
-        </article>
-      </main>
+      <section class="contact section-pad" id="contact">
+        <div class="contact-copy" data-reveal>
+          <p class="section-label light" id="contact-label"></p>
+          <h2 id="contact-title"></h2>
+          <p id="contact-text"></p>
+        </div>
+        <div class="contact-actions" data-reveal>
+          <a class="button button-light" id="contact-email"></a>
+          <div class="social-links" id="social-links"></div>
+        </div>
+      </section>
+    </main>
 
-      <footer class="site-footer">
-        <p id="footer-text"></p>
-      </footer>
-    </div>
-
-    <script src="./content.js"></script>
-    <script src="./script.js"></script>
+    <footer class="site-footer">
+      <p>© <span id="year"></span> <span id="footer-name"></span></p>
+      <p id="footer-copy"></p>
+      <a href="./admin/" aria-label="Open content management guide">Manage content ↗</a>
+    </footer>
   </body>
 </html>
