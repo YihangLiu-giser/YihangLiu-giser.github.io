@@ -38,10 +38,9 @@ window.PORTFOLIO_CONTENT = {
       description: "Academic portfolio of Yihang Liu — geospatial information engineering, panoramic depth estimation, photogrammetric mesh evaluation, and urban spatial analysis.",
     },
     nav: [
-      ["About", "#about"],
+      ["Home", "#home"],
       ["Research", "#research"],
       ["Experience", "#experience"],
-      ["Highlights", "#highlights"],
       ["Contact", "#contact"],
     ],
     hero: {
@@ -66,6 +65,14 @@ window.PORTFOLIO_CONTENT = {
         "I enjoy building complete, testable pipelines: from model design and geometric reasoning to implementation, evaluation, and communication. Core coursework includes Data Science & Data Mining, 3D Modeling & Simulation, Computer Graphics, and Computer Vision.",
       ],
       interests: ["Panoramic depth estimation", "3D reconstruction", "Point clouds", "Photogrammetry", "Spatial visibility", "Applied AI"],
+    },
+    education: {
+      title: "Education",
+      school: "Shenzhen University",
+      degree: "B.Eng. in Geospatial Information Engineering (Smart City)",
+      schoolUnit: "School of Architecture and Urban Planning",
+      details: "GPA 3.66 / 4.5 · Overall rank 16 / 68",
+      coursework: "Selected coursework: Data Science & Data Mining, 3D Modeling & Simulation, Computer Graphics, Computer Vision.",
     },
     research: {
       label: "SELECTED RESEARCH",
@@ -165,7 +172,7 @@ window.PORTFOLIO_CONTENT = {
       title: "刘一航 | 空间智能与三维视觉",
       description: "刘一航的学术主页，关注地理空间信息工程、全景深度估计、实景三维质量评价与城市空间分析。",
     },
-    nav: [["关于", "#about"], ["研究", "#research"], ["经历", "#experience"], ["成果", "#highlights"], ["联系", "#contact"]],
+    nav: [["首页", "#home"], ["研究", "#research"], ["经历", "#experience"], ["联系", "#contact"]],
     hero: {
       eyebrow: "地理空间信息工程 · 深圳大学",
       title: "空间智能与三维视觉。",
@@ -188,6 +195,14 @@ window.PORTFOLIO_CONTENT = {
         "我喜欢把研究问题转化为完整、可验证的技术流程，从模型设计与几何推导，到实现、评价与成果表达。核心课程包括数据科学与数据挖掘、三维建模与仿真、计算机图形学和计算机视觉。",
       ],
       interests: ["全景深度估计", "三维重建", "点云", "摄影测量", "空间可视性", "AI 应用"],
+    },
+    education: {
+      title: "教育背景",
+      school: "深圳大学",
+      degree: "地理空间信息工程（智慧城市）工学学士",
+      schoolUnit: "建筑与城市规划学院",
+      details: "GPA 3.66 / 4.5 · 综合排名 16 / 68",
+      coursework: "核心课程：数据科学与数据挖掘、三维建模与仿真、计算机图形学、计算机视觉。",
     },
     research: {
       label: "代表性研究",
